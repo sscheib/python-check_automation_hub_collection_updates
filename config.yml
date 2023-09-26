@@ -1,0 +1,20 @@
+---
+# Repositories to consider
+# Possible values: 'validated' and 'certified'
+repositories:
+  - 'validated'
+  - 'certified'
+
+# Collection names to consider
+# Either as fully qualified collection name (e.g. 'infra.leapp') or collection name only (e.g. 'controller')
+collections:
+#  - 'infra.leapp'
+#  - 'satellite_operations'
+
+# Namespaces to consider
+# All collections from these namespaces will be considered
+namespaces:
+#  - 'redhat'
+#  - 'infra'
+#  - 'ansible'
+#  - 'cisco'
