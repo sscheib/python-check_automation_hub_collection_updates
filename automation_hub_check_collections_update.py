@@ -22,6 +22,7 @@ from datetime import timedelta
 from pathlib import Path
 from argparse import ArgumentParser
 from getpass import getpass
+from pprint import pformat
 
 __author__ = 'Steffen Scheib'
 __copyright__ = 'Copyright 2023, Steffen Scheib'
@@ -35,6 +36,7 @@ __status__ = 'Development'
 LOG = logging.getLogger(os.path.basename(os.path.splitext(__file__)[0]))
 API_URL = 'https://console.redhat.com'
 API_USERNAME = ''
+API_PASSWORD = ''
 
 class HttpRequestType(Enum):
     '''Representation of the different HTTP request types'''
