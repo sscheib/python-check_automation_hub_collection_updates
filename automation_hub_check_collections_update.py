@@ -28,7 +28,7 @@ __author__ = 'Steffen Scheib'
 __copyright__ = 'Copyright 2023, Steffen Scheib'
 __credits__ = ['Steffen Scheib']
 __license__ = 'GPLv2 or later'
-__version__ = '0.1'
+__version__ = '0.2'
 __maintainer__ = 'Steffen Scheib'
 __email__ = 'steffen@scheib.me'
 __status__ = 'Development'
@@ -201,6 +201,7 @@ hrefs = {
 for collection_repo, initial_href in hrefs.items():
     # continue if config does not include the currently processed collection_repo (when given)
     if cfg \
+        and 'repositories' in cfg \
         and cfg['repositories'] \
         and collection_repo not in cfg['repositories']:
         continue
@@ -218,6 +219,7 @@ for collection_repo, initial_href in hrefs.items():
 
             # skip irrelevant collections
             if cfg \
+                and 'collections' in cfg \
                 and cfg['collections'] \
                 and collection_name not in cfg['collections'] \
                 and collection_fqcn not in cfg['collections']:
@@ -225,6 +227,7 @@ for collection_repo, initial_href in hrefs.items():
 
             # skip irrelevant namespaces
             if cfg \
+                and 'namespaces' in cfg \
                 and cfg['namespaces'] \
                 and collection_namespace not in cfg['namespaces']:
                 continue
