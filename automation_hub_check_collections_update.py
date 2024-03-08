@@ -235,9 +235,11 @@ for collection_repo, initial_href in hrefs.items():
             # show only collection updates that are in the given time frame
             if datetime.strptime(collection['updated_at'], '%Y-%m-%dT%H:%M:%S.%fZ') <= datetime.now() - timedelta(days=args.timedelta):
                 continue
+
+            collection_date = datetime.strptime(collection['updated_at'], '%Y-%m-%dT%H:%M:%S.%fZ').strftime(cfg.get('output_date_format', '%Y-%m-%d'))
             
             highest_version = collection['highest_version']
-            print(f"{collection_repo}: {collection_namespace}.{collection_name} has new version {collection['highest_version']['version']} released on {collection['updated_at']}")
+            print(f"{collection_repo}: {collection_namespace}.{collection_name} has new version {collection['highest_version']['version']} released on {collection_date}")
 
         # we are done once no next link is given
         if result['links']['next'] is None:
