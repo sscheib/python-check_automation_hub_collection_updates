@@ -25,7 +25,7 @@ from getpass import getpass
 from pprint import pformat
 
 __author__ = 'Steffen Scheib'
-__copyright__ = 'Copyright 2023, Steffen Scheib'
+__copyright__ = 'Copyright 2024, Steffen Scheib'
 __credits__ = ['Steffen Scheib']
 __license__ = 'GPLv2 or later'
 __version__ = '0.2.0'
@@ -232,8 +232,10 @@ for collection_repo, initial_href in hrefs.items():
                 and collection_namespace not in cfg['namespaces']:
                 continue
 
+            last_update = query_api(HttpRequestType.GET, collection['highest_version']['href'])['updated_at']
+
             # show only collection updates that are in the given time frame
-            if datetime.strptime(collection['updated_at'], '%Y-%m-%dT%H:%M:%S.%fZ') <= datetime.now() - timedelta(days=args.timedelta):
+            if datetime.strptime(last_update, '%Y-%m-%dT%H:%M:%S.%fZ') <= datetime.now() - timedelta(days=args.timedelta):
                 continue
 
             collection_date = datetime.strptime(collection['updated_at'], '%Y-%m-%dT%H:%M:%S.%fZ').strftime(cfg.get('output_date_format', '%Y-%m-%d'))
