@@ -1,5 +1,5 @@
 # About
-This script interates through all Ansible Collections which are available from the Ansible Automation 
+This script iterates through all Ansible Collections which are available from the Ansible Automation 
 Hub (console.redhat.com) in both the validated content and the certified content and prints out those
 collections which have been updated or released within the asked timespan (through --timedelta <days>).
 
