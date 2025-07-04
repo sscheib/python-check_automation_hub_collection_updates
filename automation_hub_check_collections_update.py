@@ -210,6 +210,9 @@ for collection_repo, initial_href in hrefs.items():
     collections = list()
     while True:
         result = query_api(HttpRequestType.GET, href)
+        if 'errors' in result:
+            LOG.error('Authentication failed for user f{args.api_username}')
+            sys.exit(1) 
 
         # iterate over each collection
         for collection in result['data']:
@@ -241,7 +244,7 @@ for collection_repo, initial_href in hrefs.items():
             collection_date = datetime.strptime(collection['updated_at'], '%Y-%m-%dT%H:%M:%S.%fZ').strftime(cfg.get('output_date_format', '%Y-%m-%d'))
             
             highest_version = collection['highest_version']
-            print(f"{collection_repo}: {collection_namespace}.{collection_name} has new version {collection['highest_version']['version']} released on {collection_date}")
+            print(f"{collection_repo}: {collection_namespace}.{collection_name}: Version {collection['highest_version']['version']} released on {collection_date}")
 
         # we are done once no next link is given
         if result['links']['next'] is None:
